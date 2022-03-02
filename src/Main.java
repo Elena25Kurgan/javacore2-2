@@ -26,7 +26,8 @@ public class Main {
 
         Stream<Person> stream1 = persons.stream();
         List<String> listFamily = stream1
-                .filter(p -> p.getAge() > 18)
+                .filter(p -> p.getSex() == Sex.MAN)
+                .filter(p -> p.getAge() >= 18)
                 .filter(p -> p.getAge() < 27)
                 .map(Person::getFamily)
                 .collect(Collectors.toList());
@@ -40,7 +41,7 @@ public class Main {
                 .filter(p -> p.getEducation() == Education.HIGHER)
                 .filter(p -> (p.getSex() == Sex.MAN && p.getAge() < 65) ||
                         (p.getSex() == Sex.WOMAN && p.getAge() < 60))
-                .map(Person::getFamily)
+                .map(Person::toString)
                 .sorted(Comparator.naturalOrder())
                 .collect(Collectors.toList());
 
